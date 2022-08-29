@@ -9,11 +9,22 @@ from elevate import elevate
 import keyboard as kb
 import shutil
 import wget
+import threading
+import pygame
+from pygame.locals import *
 
 
 elevate()
 
-playsound('moosiq.mp3', False)
+def loopSound():
+    while True:
+        playsound('moosiq.mp3', block=True)
+
+# providing a name for the thread improves usefulness of error messages.
+loopThread = threading.Thread(target=loopSound, name='backgroundMusicThread')
+loopThread.daemon = True # shut down music thread when the rest of the program exits
+loopThread.start()
+
 
 
 os.system('cls & title Windows Installer ~ unofficialdxnny')
@@ -48,8 +59,19 @@ while True:
 
         if choice == '1':
             print(Colorate.Color(Colors.green, f'Installing Windows XP', True))
+            print(Colorate.Color(Colors.green, f'Installing Windows XP...', True))
+            ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+  
+            response = requests.get("https://bit.ly/WinXPPXniW1002")
+
+            file = open("WindowsXP.iso", "wb")
+            file.write(response.content)
+            file.close()
+            print(Colorate.Color(Colors.green, f'Windows XP ISO Installed', True))  
+        
             sleep(1)
             os.system('cls')
+            
 
 
         elif choice == '2':
@@ -60,17 +82,32 @@ while True:
 
 
         elif choice == '3':
-            print(Colorate.Color(Colors.green, f'Installing Windows 7', True))
-            ## playsound.playsound('./assets/sounds/startup7.mp3', True)
-  
-            ## url = 'https://bit.ly/3318e1R'
-            ## data = requests.get(url).content
-            ## with open('./Windows 7/7.iso', 'wb') as handler:
-            ##     handler.write(data)
+            print(Colorate.Color(Colors.green, f'Installing Windows 7...', True))
+      
+            sleep(1)
+            os.system('cls')
+
+
+        elif choice == '4':
+            print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
+            sleep(1)
+            os.system('cls')
+
+
+        elif choice == '5':
+            print(Colorate.Color(Colors.green, f'Installing Windows 10', True)) 
+            sleep(1)
+            os.system('cls')
+
+
+        elif choice == '6':
+            print(Colorate.Color(Colors.green, f'Installing Windows 11', True)) 
+            sleep(1)
+            os.system('cls')
+        
+
+        elif choice == '7':
             
-            wget.download('https://bit.ly/3318e1R')
-            
-            print(Colorate.Color(Colors.green, f'Windows 7 ISO Installed', True))  
             print(Colorate.Color(Colors.green, f'Making Bootable USB...', True))
             print(Colorate.Color(Colors.red_to_blue, f'Inserted USB? Press "Enter"', True))
             if kb.read_key('enter'):
@@ -107,28 +144,6 @@ while True:
                         
                     for file_name in file_names:
                         shutil.move(os.path.join(source_dir, file_name), target_dir)
-            sleep(1)
-            os.system('cls')
-
-
-        elif choice == '4':
-            print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
-            sleep(1)
-            os.system('cls')
-
-
-        elif choice == '5':
-            print(Colorate.Color(Colors.green, f'Installing Windows 10', True)) 
-            sleep(1)
-            os.system('cls')
-
-
-        elif choice == '6':
-            print(Colorate.Color(Colors.green, f'Installing Windows 11', True)) 
-            sleep(1)
-            os.system('cls')
-
-
 
         elif choice == '':
             print(Colorate.Color(Colors.red, f'Field Cant Be Empty', True))
