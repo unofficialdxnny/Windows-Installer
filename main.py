@@ -12,7 +12,14 @@ import wget
 import threading
 import pygame
 from pygame.locals import *
-
+import itertools
+import threading
+import time
+import sys
+from colorama import * 
+from rich.console import Console
+import urllib.request
+import random
 
 elevate()
 
@@ -44,7 +51,7 @@ menu = '''
     [1] Windows XP        [4] Windows 8   
     [2] Windows Vista     [5] Windows 10   
     [3] Windows 7         [6] Windows 11
-
+              [7] Bootable USB
 
 '''
 opt = ['1', '2', '3', '4', '5', '6']
@@ -58,19 +65,64 @@ while True:
         choice = Write.Input("Select an option : ", Colors.red_to_blue, interval=0.0025)
 
         if choice == '1':
-            print(Colorate.Color(Colors.green, f'Installing Windows XP', True))
-            print(Colorate.Color(Colors.green, f'Installing Windows XP...', True))
-            ## playsound.playsound('./assets/sounds/startup7.mp3', True)
-  
-            response = requests.get("https://bit.ly/WinXPPXniW1002")
+            ## print(Colorate.Color(Colors.green, f'Installing Windows XP...', True))
 
-            file = open("WindowsXP.iso", "wb")
-            file.write(response.content)
-            file.close()
-            print(Colorate.Color(Colors.green, f'Windows XP ISO Installed', True))  
-        
-            sleep(1)
-            os.system('cls')
+            console = Console()
+            tasks = [f"Loading Contents", "Retrieving URL", "Checking URL MetaData", "Loading URL", "Checking Internet Connection"]
+            for n in range(1, 11):
+                with console.status("[bold green]Working on tasks...") as status:
+                    while tasks:
+                        tim = random.randint(1,6)
+                        task = tasks.pop(0)
+                        sleep(tim)
+                        console.log(f"{task}")
+            
+            def connect(host='http://google.com'):#
+                try:
+                    urllib.request.urlopen(host) #Python 3.x
+                    return True
+                except:
+                    return False
+                    # test
+            
+            if connect():
+                done = False
+                #here is the animation
+                def animate():
+                    for c in itertools.cycle(['|', '/', '-', '\\']):
+                        if done:
+                            break
+                        sys.stdout.write(Fore.GREEN + '\rInstalling Windows XP ' + c)
+                        sys.stdout.flush()
+                        time.sleep(1)
+                    ## sys.stdout.write(Fore.GREEN + '\rWindows XP Installed')
+
+                t = threading.Thread(target=animate)
+                t.start()
+                ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+    
+                response = requests.get("https://bit.ly/WinXPPXniW1002")
+
+                file = open("WindowsXP.iso", "wb")
+                file.write(response.content)
+                file.close()
+                print(Colorate.Color(Colors.green, f'Windows XP ISO Installed', True))  
+
+                #long process here
+                time.sleep(10)
+                done = True
+
+                sleep(1)
+                os.system('cls')
+            else:
+                pag.keyDown('alt')
+                pag.keyDown('F4')
+                pag.keyUp('alt')
+                pag.keyUp('F4')
+
+
+                    
+
             
 
 
@@ -106,44 +158,6 @@ while True:
             os.system('cls')
         
 
-        elif choice == '7':
-            
-            print(Colorate.Color(Colors.green, f'Making Bootable USB...', True))
-            print(Colorate.Color(Colors.red_to_blue, f'Inserted USB? Press "Enter"', True))
-            if kb.read_key('enter'):
-                os.system('diskpart')
-                os.system('list disk')
-                print(Colorate.Color(Colors.red_to_blue, f'Type "Disk #" of your disk', True))
-                disk = Write.Input("type 'Disk #' : ", Colors.red_to_blue, interval=0.0025)
-                os.system(disk)
-                print(Colorate.Color(Colors.red_to_blue, f'To make a pendrive bootable, there is a need to format it to clean the existing data. Make sure you made a backup.', True))
-                print(Colorate.Color(Colors.red_to_blue, f'Press "Enter" once done.', True))
-                if kb.read_key('enter'):
-                    print(Colorate.Color(Colors.red_to_blue, f'Cleaning the disk.', True))
-                    os.system('clean')
-                    print(Colorate.Color(Colors.green, f'Successful...', True))
-                    print(Colorate.Color(Colors.red_to_blue, f'Making the disk bootable.', True))
-                    os.system('create partition primary')
-                    print(Colorate.Color(Colors.green, f'Successful...', True))
-                    print(Colorate.Color(Colors.red_to_blue, f'Selecting correct partition.', True))
-                    os.system('select partition 1')
-                    print(Colorate.Color(Colors.green, f'Successful...', True))
-                    print(Colorate.Color(Colors.red_to_blue, f'Formatting Drive', True))
-                    os.system('format=fs NTFS')
-                    print(Colorate.Color(Colors.green, f'Successful...', True))
-                    print(Colorate.Color(Colors.red_to_blue, f'Activating Bootable Drive', True))
-                    os.system('active')
-                    print(Colorate.Color(Colors.green, f'Successful...', True))
-                    print(Colorate.Color(Colors.red_to_blue, f'Exiting DISKPART', True))
-                    os.system('exit')
-                    print(Colorate.Color(Colors.green, f'Finished', True))
-                    source_dir = Write.Input("path/to/source/directory :  ", Colors.red_to_blue, interval=0.0025)
-                    target_dir = Write.Input("path/to/destination/directory : ", Colors.red_to_blue, interval=0.0025)
-                    
-                    file_names = os.listdir(source_dir)
-                        
-                    for file_name in file_names:
-                        shutil.move(os.path.join(source_dir, file_name), target_dir)
 
         elif choice == '':
             print(Colorate.Color(Colors.red, f'Field Cant Be Empty', True))
