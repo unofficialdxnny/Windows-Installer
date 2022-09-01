@@ -189,7 +189,63 @@ while True:
 
         elif choice == '3':
             print(Colorate.Color(Colors.green, f'Installing Windows 7...', True))
-      
+            
+            console = Console()
+            tasks = [f"Loading Contents", "Retrieving URL", "Checking URL MetaData", "Loading URL", "Checking Internet Connection"]
+            for n in range(1, 11):
+                with console.status("[bold green]Working on tasks...") as status:
+                    while tasks:
+                        tim = random.randint(1,6)
+                        task = tasks.pop(0)
+                        sleep(tim)
+                        console.log(f"{task}")
+            
+            def connect(host='http://google.com'):#
+                try:
+                    urllib.request.urlopen(host) #Python 3.x
+                    return True
+                except:
+                    return False
+                    # test
+            
+            if connect():
+                done = False
+                #here is the animation
+                def animate():
+                    for c in itertools.cycle(['|', '/', '-', '\\']):
+                        if done:
+                            break
+                        sys.stdout.write(Fore.GREEN + '\rInstalling Windows 7 ' + c)
+                        sys.stdout.flush()
+                        time.sleep(1)
+                    ## sys.stdout.write(Fore.GREEN + '\rWindows XP Installed')
+
+                t = threading.Thread(target=animate)
+                t.start()
+                ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+    
+                response = requests.get("https://download.microsoft.com/download/C/0/6/C067D0CD-3785-4727-898E-60DC3120BB14/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x86FRE_en-us.iso")
+
+                file = open("WindowsXP.iso", "wb")
+                file.write(response.content)
+                file.close()
+                print(Colorate.Color(Colors.green, f'Windows 7 ISO Installed', True))  
+
+                #long process here
+                time.sleep(10)
+                done = True
+
+                sleep(1)
+                os.system('cls')
+            else:
+                pag.keyDown('alt')
+                pag.keyDown('F4')
+                pag.keyUp('alt')
+                pag.keyUp('F4')
+
+            sleep(1)
+            os.system('cls')
+
             sleep(1)
             os.system('cls')
 
