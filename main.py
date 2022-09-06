@@ -165,7 +165,7 @@ while True:
     
                 response = requests.get("https://bit.ly/WinVistaatsiVniW7002")
 
-                file = open("WindowsXP.iso", "wb")
+                file = open("WindowsVista.iso", "wb")
                 file.write(response.content)
                 file.close()
                 print(Colorate.Color(Colors.green, f'Windows Vista ISO Installed', True))  
@@ -226,7 +226,7 @@ while True:
     
                 response = requests.get("https://download.microsoft.com/download/C/0/6/C067D0CD-3785-4727-898E-60DC3120BB14/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x86FRE_en-us.iso")
 
-                file = open("WindowsXP.iso", "wb")
+                file = open("Windows7.iso", "wb")
                 file.write(response.content)
                 file.close()
                 print(Colorate.Color(Colors.green, f'Windows 7 ISO Installed', True))  
@@ -251,19 +251,203 @@ while True:
 
 
         elif choice == '4':
-            print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
+            ## print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
+            sleep(1)
+            os.system('cls')
+            print(Colorate.Color(Colors.green, f'Installing Windows 8...', True))
+            
+            console = Console()
+            tasks = [f"Loading Contents", "Retrieving URL", "Checking URL MetaData", "Loading URL", "Checking Internet Connection"]
+            for n in range(1, 11):
+                with console.status("[bold green]Working on tasks...") as status:
+                    while tasks:
+                        tim = random.randint(1,6)
+                        task = tasks.pop(0)
+                        sleep(tim)
+                        console.log(f"{task}")
+            
+            def connect(host='http://google.com'):#
+                try:
+                    urllib.request.urlopen(host) #Python 3.x
+                    return True
+                except:
+                    return False
+                    # test
+            
+            if connect():
+                done = False
+                #here is the animation
+                def animate():
+                    for c in itertools.cycle(['|', '/', '-', '\\']):
+                        if done:
+                            break
+                        sys.stdout.write(Fore.GREEN + '\rInstalling Windows 8 ' + c)
+                        sys.stdout.flush()
+                        time.sleep(1)
+                    ## sys.stdout.write(Fore.GREEN + '\rWindows XP Installed')
+
+                t = threading.Thread(target=animate)
+                t.start()
+                ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+    
+                response = requests.get("https://software.download.prss.microsoft.com/dbazure/Win8.1_English_x64.iso?t=b13f854a-9899-49e3-8e47-6d012e4f9124&e=1662582523&h=44b08440441dfde9e406979333447a403daa20e0a5bcbdbdfad7f0fea9ed4039")
+
+                file = open("Windows8.iso", "wb")
+                file.write(response.content)
+                file.close()
+                print(Colorate.Color(Colors.green, f'Windows 8 ISO Installed', True))  
+
+                #long process here
+                time.sleep(10)
+                done = True
+
+                sleep(1)
+                os.system('cls')
+            else:
+                pag.keyDown('alt')
+                pag.keyDown('F4')
+                pag.keyUp('alt')
+                pag.keyUp('F4')
+
             sleep(1)
             os.system('cls')
 
+            sleep(1)
+            os.system('cls')
 
         elif choice == '5':
             print(Colorate.Color(Colors.green, f'Installing Windows 10', True)) 
             sleep(1)
             os.system('cls')
+                        ## print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
+            sleep(1)
+            os.system('cls')
+            print(Colorate.Color(Colors.green, f'Installing Windows 10...', True))
+            
+            console = Console()
+            tasks = [f"Loading Contents", "Retrieving URL", "Checking URL MetaData", "Loading URL", "Checking Internet Connection"]
+            for n in range(1, 11):
+                with console.status("[bold green]Working on tasks...") as status:
+                    while tasks:
+                        tim = random.randint(1,6)
+                        task = tasks.pop(0)
+                        sleep(tim)
+                        console.log(f"{task}")
+            
+            def connect(host='http://google.com'):#
+                try:
+                    urllib.request.urlopen(host) #Python 3.x
+                    return True
+                except:
+                    return False
+                    # test
+            
+            if connect():
+                done = False
+                #here is the animation
+                def animate():
+                    for c in itertools.cycle(['|', '/', '-', '\\']):
+                        if done:
+                            break
+                        sys.stdout.write(Fore.GREEN + '\rInstalling Windows 8 ' + c)
+                        sys.stdout.flush()
+                        time.sleep(1)
+                    ## sys.stdout.write(Fore.GREEN + '\rWindows XP Installed')
 
+                t = threading.Thread(target=animate)
+                t.start()
+                ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+    
+                response = requests.get("https://www.itechtics.com/?dl_id=133")
+
+                file = open("Windows10.iso", "wb")
+                file.write(response.content)
+                file.close()
+                print(Colorate.Color(Colors.green, f'Windows 10 ISO Installed', True))  
+
+                #long process here
+                time.sleep(10)
+                done = True
+
+                sleep(1)
+                os.system('cls')
+            else:
+                pag.keyDown('alt')
+                pag.keyDown('F4')
+                pag.keyUp('alt')
+                pag.keyUp('F4')
+
+            sleep(1)
+            os.system('cls')
+
+            sleep(1)
+            os.system('cls')
 
         elif choice == '6':
             print(Colorate.Color(Colors.green, f'Installing Windows 11', True)) 
+            sleep(1)
+            os.system('cls')
+                        ## print(Colorate.Color(Colors.green, f'Installing Windows 8', True))  
+            sleep(1)
+            os.system('cls')
+            print(Colorate.Color(Colors.green, f'Installing Windows 8...', True))
+            
+            console = Console()
+            tasks = [f"Loading Contents", "Retrieving URL", "Checking URL MetaData", "Loading URL", "Checking Internet Connection"]
+            for n in range(1, 11):
+                with console.status("[bold green]Working on tasks...") as status:
+                    while tasks:
+                        tim = random.randint(1,6)
+                        task = tasks.pop(0)
+                        sleep(tim)
+                        console.log(f"{task}")
+            
+            def connect(host='http://google.com'):#
+                try:
+                    urllib.request.urlopen(host) #Python 3.x
+                    return True
+                except:
+                    return False
+                    # test
+            
+            if connect():
+                done = False
+                #here is the animation
+                def animate():
+                    for c in itertools.cycle(['|', '/', '-', '\\']):
+                        if done:
+                            break
+                        sys.stdout.write(Fore.GREEN + '\rInstalling Windows 11 ' + c)
+                        sys.stdout.flush()
+                        time.sleep(1)
+                    ## sys.stdout.write(Fore.GREEN + '\rWindows XP Installed')
+
+                t = threading.Thread(target=animate)
+                t.start()
+                ## playsound.playsound('./assets/sounds/startup7.mp3', True)
+    
+                response = requests.get("https://software.download.prss.microsoft.com/dbazure/Win11_English_x64v1.iso?t=feb483e7-4662-48a4-ae4c-8537725823d2&e=1662582811&h=7ca0f0282ef91638eb8c67e8c603c609db1299ad8b82bc2f0db4efa5c5ba3462")
+
+                file = open("Windows11.iso", "wb")
+                file.write(response.content)
+                file.close()
+                print(Colorate.Color(Colors.green, f'Windows 11 ISO Installed', True))  
+
+                #long process here
+                time.sleep(10)
+                done = True
+
+                sleep(1)
+                os.system('cls')
+            else:
+                pag.keyDown('alt')
+                pag.keyDown('F4')
+                pag.keyUp('alt')
+                pag.keyUp('F4')
+
+            sleep(1)
+            os.system('cls')
+
             sleep(1)
             os.system('cls')
         
